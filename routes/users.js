@@ -13,6 +13,7 @@ var debug = require("debug")("moviesAppAuth:server");
 //Models
 var User = require("../models/User.js");
 
+mongoose.set("strictQuery", false);
 var db = mongoose.connection;
 
 function tokenVerify (req, res, next) {

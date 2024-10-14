@@ -26,11 +26,14 @@ app.use(cors());
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
+const MONGODB_CLUSTER_URI = process.env.MONGODB_CLUSTER_URI;
+// Añade el nombre de tu base de datos al final de la URI
+const MONGODB_DATABASE_NAME = process.env.MONGODB_DATABASE_NAME;
+const fullURI = `${MONGODB_CLUSTER_URI}/${MONGODB_DATABASE_NAME}?retryWrites=true&w=majority&appName=ClusterSSIIUU`;
 
 // MongoDB Atlas DB cluster connection
 mongoose
-  .connect(
-    process.env.MONGODB,
+  .connect(fullURI,
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => debug("MongoDB Atlas DataBase connection successful"));

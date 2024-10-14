@@ -5,6 +5,7 @@ var debug = require("debug")("moviesAppAuth:server");
 
 //Models
 var Bookmark = require("../models/Bookmark.js");
+mongoose.set("strictQuery", false);
 var db = mongoose.connection;
 
 /* GET bookmarks listing from an user by user email. */
